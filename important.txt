@@ -1,0 +1,2 @@
+python manage.py createsuperuser ------------ user: admin pw: admin
+python manage.py startapp *insert_name*
