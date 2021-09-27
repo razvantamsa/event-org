@@ -1,14 +1,10 @@
 <h1>Log In</h1>
 
-<form>
-    <label for="username">Username</label><br>
-    <input type="text" name="username"><br>
-
-    <label for="password">Password</label><br>
-    <input type="password" name="password"><br>
-
-    <br><br>
-    <label for="login">Done!</label><br>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <label for="register">Done!</label><br>
     <input type="submit" name="login">
 
+    {{errors}}
 </form>

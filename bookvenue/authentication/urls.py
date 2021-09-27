@@ -3,8 +3,9 @@ from django.urls import path, include
 from authentication.views import * 
 
 urlpatterns = [
-    path('register/', register_test),
-    path('login/', login_test),
-    path('logout/', logout_test),
+    path('register/', register),
+    path('login/', login_view),
+    path('logout/', logout_view),
     path('change_pass/', change_pass_test),
+    path('', display_welcome),
 ]
