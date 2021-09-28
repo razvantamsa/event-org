@@ -3,6 +3,8 @@ from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm, LoginForm
 import logging
+from django.core.mail import send_mail
+from django.utils.crypto import get_random_string
 
 # Create your views here.
 
@@ -46,5 +48,12 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-def change_pass_test(request):
+def change_pass(request):
+    send_mail(
+        'Subject here',
+        'Here is the message.',
+        'bookvenuecontact@gmail.com',
+        ['razvantamsa420@gmail.com'],
+        fail_silently=False,
+    )
     return render(request, 'change_pass.html')
