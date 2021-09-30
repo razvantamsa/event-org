@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm, LoginForm
+from post.models import Post
+from django.contrib.auth.models import User
 import logging
 from django.core.mail import EmailMessage
 import uuid
@@ -9,9 +11,13 @@ import uuid
 # Create your views here.
 
 def display_welcome(request):
+    post_list = Post.objects.all()
+    context = {'post_list': post_list}
+    string_name = 'Anonymous'
     if request.user.is_authenticated:
-        return render(request, "welcome_account.html")
-    return render(request, "welcome_anonymous.html")
+        string_name = request.user.username
+    context['name'] = string_name
+    return render(request, "welcome_account.html", context)
 
 def register(request):
     if request.user.is_authenticated:
