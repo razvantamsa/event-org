@@ -1,4 +1,4 @@
-<h1>List</h1>
+{% extends 'welcome_account.html' %}
 
 {% block content %}
     <h2>Posts</h2>
@@ -7,4 +7,5 @@
             <li><a href="{{ post.slug }}">{{ post.title }}</a></li>
         {% endfor %}
     </ul>
+    <a href="/post/create-post">Create Post</a>
 {% endblock %}
