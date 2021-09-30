@@ -1,0 +1,9 @@
+HI
+
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <label for="save">Done!</label><br>
+    <input type="submit" name="save">
+
+</form>

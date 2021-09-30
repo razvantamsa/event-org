@@ -1,2 +1,3 @@
 virtualenv
 django
+pip install django[argon2]

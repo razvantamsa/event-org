@@ -3,8 +3,8 @@ from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm, LoginForm
 import logging
-from django.core.mail import send_mail
-from django.utils.crypto import get_random_string
+from django.core.mail import EmailMessage
+import uuid
 
 # Create your views here.
 
@@ -32,7 +32,7 @@ def register(request):
 def login_view(request):
     errors = []
     if request.user.is_authenticated:
-        return render(request, "welcome_account.html")
+        return redirect('/')
     form = LoginForm(data = request.POST or None)
     if request.method == "POST":
         if form.is_valid():
@@ -49,11 +49,10 @@ def logout_view(request):
     return redirect('/')
 
 def change_pass(request):
-    send_mail(
-        'Subject here',
-        'Here is the message.',
-        'bookvenuecontact@gmail.com',
-        ['razvantamsa420@gmail.com'],
-        fail_silently=False,
-    )
+    recipient = 'razvantamsa420@gmail.com'
+    if(request.user.is_authenticated == True):
+        recipient = request.user.email
+    code = uuid.uuid4().hex[:6].upper()
+    msg = EmailMessage('Forgot Password', 'Here is the code:' + code, to=[recipient])
+    msg.send()
     return render(request, 'change_pass.html')
