@@ -13,6 +13,10 @@ class Post(models.Model):
     clicked = models.IntegerField( default = 0)
     date_posted = models.DateTimeField()
     address = models.CharField( max_length = 50 )
+    picture1 = models.ImageField( null = True, blank = True)
+    picture2 = models.ImageField( null = True, blank = True)
+    picture3 = models.ImageField( null = True, blank = True)
+    picture4 = models.ImageField( null = True, blank = True)
 
 def create_slug(instance, new_slug = None, id = 0):
     slug = slugify(instance.title.lower())

@@ -3,3 +3,5 @@ django
 pip install django[argon2]
 pip install django-phonenumber-field
 pip install phonenumbers
+python -m pip install Pillow
+pip install django-resized
