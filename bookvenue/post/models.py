@@ -19,7 +19,7 @@ def create_slug(instance, new_slug = None, id = 0):
         slug = new_slug
     qs = Post.objects.filter(slug=slug)
     if(qs.exists()):
-        new_slug = '%s-%s' %(slug, id)
+        new_slug = '%s-%s' %( slugify(instance.title.lower()) , id)
         return create_slug(instance, new_slug = new_slug, id = id+1)
     return slug
 
