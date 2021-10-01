@@ -1,17 +1,61 @@
-body {
-    margin:50px 0px; 
-    padding:0px;
-    text-align:center;
-    align:center;
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Nunito', sans-serif;
 }
 
-form {
-    display: inline-block;
+nav {
+    background-image: linear-gradient(-90deg, #96c2aa,#479286);
 }
 
-.fieldWrapper{
-    margin: 10px 10px;
-    padding: 5px;
-    text-align:center;
-    align:center;
+.nav-link {
+    font-size: 16px;
+    margin: 3px;
+    color: black!important;
+    font-weight: 500;
+}
+
+.navbar-nav {
+    text-align: right;
+    margin-right: 20px;
+
+}
+
+.menu-bar .navbar-toggler {
+    padding-right: 20px;
+    outline: none!important;
+    border: none!important
+}
+
+.navbar .fa {
+    color: white!important;
+    font-size: 26px;
+
+}
+
+.nav-link:hover {
+    font-weight: 600;
+    border-bottom: 1px solid black;
+}
+
+.navbar-brand:hover {
+    font-weight: 600;
+    border-bottom: 1px solid black;
+}
+
+.wrapper {
+    margin-top: 50px;
+    text-align: center;
+    border-width: 2px;
+    border-color: black;
+}
+
+input, select {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+img {
+    border-radius: 5px;
 }
