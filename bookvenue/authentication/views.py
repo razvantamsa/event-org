@@ -16,9 +16,12 @@ def display_welcome(request):
     context = {'post_list': post_list}
     string_name = 'Anonymous'
     if request.user.is_authenticated:
+        context['authenticated'] = True
         string_name = request.user.username
+    else:
+        context['authenticated'] = False
     context['name'] = string_name
-    return render(request, "welcome_account.html", context)
+    return render(request, "welcome.html", context)
 
 def register(request):
     if request.user.is_authenticated:
@@ -29,7 +32,7 @@ def register(request):
         if form.is_valid():
             form.instance.set_password(form.cleaned_data['password'])
             form.save()
-            print(form.instance)
+            #print(form.instance)
             user = authenticate(username = form.instance.username, password = form.cleaned_data['password'])
             login(request, user)
             return redirect('/')
