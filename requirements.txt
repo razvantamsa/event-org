@@ -5,3 +5,4 @@ pip install django-phonenumber-field
 pip install phonenumbers
 python -m pip install Pillow
 pip install django-resized
+pip install bootstrap-py

@@ -1,16 +1,37 @@
-HI
+{% load static %}
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookVenue</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post/create-post.css' %}">
+</head>
+<body>
 
-    {% for field in form %}
-        <div class="fieldWrapper">
-            {{ field.errors }}
-            {{ field.label_tag }}: {{ field }}
-        </div>
-    {% endfor %}
-
-    <label for="save">Done!</label><br>
-    <input type="submit" name="save">
-
-</form>
+    <div class="navbar">
+        <p>Hello {{request.user.username}}! </p>
+    </div>
+    <div class="wrapper">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        
+            {% for field in form %}
+                <div class="fieldWrapper">
+                    {{ field.errors }}
+                    {{ field.label_tag }} {{ field }}
+                </div>
+            {% endfor %}
+                
+            <div class="fieldWrapper">
+                <br><br>
+                <label for="save">Done!</label>
+                <input type="submit" name="save">
+            </div>
+        
+        </form>
+    </div>
+</body>
+</html>
