@@ -27,12 +27,6 @@ nav {
     border: none!important
 }
 
-.navbar .fa {
-    color: white!important;
-    font-size: 26px;
-
-}
-
 .nav-link:hover {
     font-weight: 600;
     border-bottom: 1px solid black;
@@ -46,16 +40,29 @@ nav {
 .wrapper {
     margin-top: 50px;
     text-align: center;
-    border-width: 2px;
-    border-color: black;
-}
-
-input, select {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding: 15px;
+    background-color: #96c2aa;
+    border-radius: 10px;
+    font-weight: 600;
 }
 
 img {
     border-radius: 5px;
+}
+
+.fieldWrapper{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+footer {
+    margin-top: 50px;
+}
+
+.socials {
+    padding-right: px;
 }
