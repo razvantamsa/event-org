@@ -1,3 +1,9 @@
-from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
+from user_profile.models import Profile
 
-# Create your models here.
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance, profile_picture='profile.png')

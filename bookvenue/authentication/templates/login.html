@@ -2,7 +2,14 @@
 
 <form method="post">
     {% csrf_token %}
-    {{form.as_p}}
+    
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }}: {{ field }}
+        </div>
+    {% endfor %}
+
     <label for="register">Done!</label><br>
     <input type="submit" name="login">
 

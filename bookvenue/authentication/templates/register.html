@@ -2,7 +2,12 @@
 
 <form method="post">
     {% csrf_token %}
-    {{form.as_p}}
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }}: {{ field }}
+        </div>
+    {% endfor %}
     <label for="register">Done!</label><br>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <div class="g-recaptcha" data-sitekey="6LfNT5UcAAAAAJENf5WZb7q33qDydXD7JWVm50mb"></div>

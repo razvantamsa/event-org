@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 import logging
 from django.core.mail import EmailMessage
 import uuid
+from user_profile.models import Profile
 
 # Create your views here.
 
@@ -28,6 +29,7 @@ def register(request):
         if form.is_valid():
             form.instance.set_password(form.cleaned_data['password'])
             form.save()
+            print(form.instance)
             user = authenticate(username = form.instance.username, password = form.cleaned_data['password'])
             login(request, user)
             return redirect('/')
