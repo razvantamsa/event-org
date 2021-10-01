@@ -11,4 +11,4 @@ class Profile(models.Model):
     country = models.CharField( max_length = 20, null=True )
     phonenumber = PhoneNumberField(null=True)
     birth_date = models.DateField(null=True)
-    profile_picture = models.ImageField()
+    profile_picture = models.ImageField(upload_to='images/')

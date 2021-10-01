@@ -1,8 +1,15 @@
 HI
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{form.as_p}}
+
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }}: {{ field }}
+        </div>
+    {% endfor %}
+
     <label for="save">Done!</label><br>
     <input type="submit" name="save">
 

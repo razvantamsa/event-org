@@ -8,4 +8,20 @@
             <li>{{ post.address }}</li>
             <li>{{ post.host }}</li>
     </ul>
+    {% if post.picture1 %}
+        <img src="{{ post.picture1.url }}" alt="img">
+    {% endif %}
+
+    {% if post.picture2 %}
+        <img src="{{ post.picture2.url }}" alt="img">
+    {% endif %}
+
+    {% if post.picture3 %}
+        <img src="{{ post.picture3.url }}" alt="img">
+    {% endif %}
+
+    {% if post.picture4 %}
+        <img src="{{ post.picture4.url }}" alt="img">
+    {% endif %}
+
 {% endblock %}

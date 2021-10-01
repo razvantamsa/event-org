@@ -22,9 +22,10 @@ class PostDetailView(generic.DetailView):
 @login_required(login_url='/login/')
 def create_post(request):
     template = 'create-post.html'
-    form = PostForm(data = request.POST or None)
+    form = PostForm()
     context = {'form': form}
     if(request.method == 'POST'):
+            form = PostForm(request.POST, request.FILES)
             form.instance.host = request.user
             form.instance.date_posted = datetime.now()
             form.save()
