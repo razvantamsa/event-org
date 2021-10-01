@@ -1,3 +1,5 @@
 virtualenv
 django
 pip install django[argon2]
+pip install django-phonenumber-field
+pip install phonenumbers

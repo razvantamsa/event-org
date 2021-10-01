@@ -12,6 +12,7 @@ class Post(models.Model):
     host = models.ForeignKey(User, on_delete = models.CASCADE)
     clicked = models.IntegerField( default = 0)
     date_posted = models.DateTimeField()
+    address = models.CharField( max_length = 50 )
 
 def create_slug(instance, new_slug = None, id = 0):
     slug = slugify(instance.title.lower())

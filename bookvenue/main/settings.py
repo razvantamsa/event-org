@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'authentication',
     'user_profile',
     'post',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [

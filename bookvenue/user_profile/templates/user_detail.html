@@ -1,0 +1,12 @@
+This is the page of {{user_profile.username}}
+
+<ul>
+    {% for post in post_list %}
+    <li>
+        <a href="../../post/{{post.slug}}">{{post.title}}</a> -- {{post.description}}
+    </li>
+    <br>
+    {% endfor %}
+</ul>
+
+{{profile_object.country}} -- {{profile_object.city}} -- {{profile_object.phonenumber}}
