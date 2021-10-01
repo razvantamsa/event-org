@@ -19,7 +19,7 @@ class PostDetailView(generic.DetailView):
     model = Post
     slug_url_kwarg = 'slug'
 
-@login_required
+@login_required(login_url='/login/')
 def create_post(request):
     template = 'create-post.html'
     form = PostForm(data = request.POST or None)

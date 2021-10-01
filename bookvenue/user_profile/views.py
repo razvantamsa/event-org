@@ -3,6 +3,7 @@ from django.views import generic
 from .models import Profile
 from post.models import Post
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -29,4 +30,8 @@ class UserDetail(generic.DetailView):
                 #print(self.get_object().username)
                 return context
 
+@login_required(login_url='/login/')
+def edit_user(request):
+    template = 'edit_user.html'
+    return render(request, template)
 

@@ -49,9 +49,9 @@ def login_view(request):
             errors.append("There is no such user/password")
     return render(request, 'login.html', {'form': form, 'errors': errors})
 
-@login_required
 def logout_view(request):
-    logout(request)
+    if(request.user.is_authenticated):
+        logout(request)
     return redirect('/')
 
 def change_pass(request):
