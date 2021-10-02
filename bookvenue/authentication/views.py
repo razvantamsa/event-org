@@ -14,7 +14,7 @@ from user_profile.models import Profile
 def display_welcome(request):
     post_list = Post.objects.all()
     context = {'post_list': post_list}
-    string_name = 'Anonymous'
+    string_name = 'anonymous'
     if request.user.is_authenticated:
         context['authenticated'] = True
         string_name = request.user.username
@@ -27,6 +27,9 @@ def register(request):
     if request.user.is_authenticated:
         return render(request, "welcome_account.html")
     form = SignUpForm(data = request.POST or None)
+    context = { 'form': form }
+    context['name'] = 'anonymous'
+    context['authenticated'] = False
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -38,7 +41,7 @@ def register(request):
             return redirect('/')
         else:
             logging.error("Form not valid")
-    return render(request, 'register.html', { 'form': form })
+    return render(request, 'register.html', context)
 
 def login_view(request):
     errors = []

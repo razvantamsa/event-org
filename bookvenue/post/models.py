@@ -13,6 +13,8 @@ class Post(models.Model):
     clicked = models.IntegerField( default = 0)
     date_posted = models.DateTimeField()
     address = models.CharField( max_length = 50 )
+    city = models.CharField( max_length = 50 )
+    country = models.CharField( max_length = 50 )
     picture1 = models.ImageField()
     picture2 = models.ImageField()
     picture3 = models.ImageField()

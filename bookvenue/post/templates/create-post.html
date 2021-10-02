@@ -32,7 +32,7 @@
                       <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href=""><i class="fas fa-pen-square"></i> Post</a>
+                      <a class="nav-link" href="/create-post/"><i class="fas fa-pen-square"></i> Post</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Contact</a>
@@ -68,6 +68,14 @@
 
                 {{ form.address.errors }}
                 {{ form.address.label_tag }} {{ form.address }}
+                <br><br>
+
+                {{ form.city.errors }}
+                {{ form.city.label_tag }} {{ form.city }}
+                <br><br>
+
+                {{ form.country.errors }}
+                {{ form.country.label_tag }} {{ form.country }}
                 <br><br>
 
             <div class="fieldWrapper">

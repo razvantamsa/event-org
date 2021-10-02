@@ -1,6 +1,9 @@
 from django import forms
 from django.core.validators import validate_email
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from captcha.fields import CaptchaField
+
 
 class LoginForm(forms.Form):
 
@@ -24,18 +27,18 @@ class LoginForm(forms.Form):
         return password
 
 class SignUpForm(forms.ModelForm):
-    
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'required': 'required'}))
+    captcha = CaptchaField()
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'required': 'required', 'class': 'form-control'}))
 
     class Meta:
         model = User
         fields = ['last_name', 'first_name', 'username', 'email', 'password']
         widgets = {
-            'username': forms.TextInput({'required': 'required'}),
-            'email': forms.EmailInput({'required': 'required'}),
-            'password': forms.PasswordInput(attrs={'required': 'required'}),
-            'first_name': forms.TextInput({'required': 'required'}),
-            'last_name': forms.TextInput({'required': 'required'}),
+            'username': forms.TextInput({'required': 'required', 'class': 'form-control'}),
+            'email': forms.EmailInput({'required': 'required', 'class': 'form-control'}),
+            'password': forms.PasswordInput(attrs={'required': 'required', 'class': 'form-control'}),
+            'first_name': forms.TextInput({'required': 'required', 'class': 'form-control'}),
+            'last_name': forms.TextInput({'required': 'required', 'class': 'form-control'}),
         }
 
     def clean_email(self):

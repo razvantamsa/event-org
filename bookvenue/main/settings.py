@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication',
+    'captcha',
     'user_profile',
     'post',
     'phonenumber_field',

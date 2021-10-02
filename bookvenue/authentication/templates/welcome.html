@@ -41,7 +41,7 @@
                       <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href=""><i class="fas fa-pen-square"></i> Post</a>
+                      <a class="nav-link" href="/create-post/"><i class="fas fa-pen-square"></i> Post</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Contact</a>
@@ -70,13 +70,16 @@
     </div>
 
 
-    <div class="wrapper">
+    <div class="container text-center bg-light">
         <h2>Posts</h2>
-        <ul>
-            {% for post in post_list %}
-              <li><a href="post/{{ post.slug }}">{{ post.title }}</a></li>
-            {% endfor %}
-        </ul>
+        {% for post in post_list %}
+          <div class="row pt-3 pb-3 ml-2 mr-2">
+            <div class="col md-3">
+              <a class="text-decoration-none" href="/post/{{ post.slug }}"> {{ post.title }} <a class="text-decoration-none text-reset" href="/post/{{ post.slug }}">by {{ post.host.username }} 
+              @ {{ post.city }}, {{ post.country }}, {{ post.address }}</a> </a> 
+            </div>
+          </div>
+        {% endfor %}
     </div>
 
     <div class="push"></div>

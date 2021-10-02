@@ -22,8 +22,12 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('authentication.urls')),
-    path('post/', include('post.urls')),
+    path('', include('post.urls')),
     path('user/', include('user_profile.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += [
+    path('captcha/', include('captcha.urls')),
+]

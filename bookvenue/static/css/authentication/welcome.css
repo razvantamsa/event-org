@@ -53,13 +53,11 @@ nav {
     border-bottom: 1px solid black;
 }
 
-.wrapper {
+.container {
+    margin-left: 15%;
+    margin-right: 15%;
     margin-top: 50px;
-    text-align: center;
-    margin-left: 25%;
-    margin-right: 25%;
     padding: 15px;
-    background-color: #96c2aa;
     border-radius: 10px;
     font-weight: 600;
 }
@@ -79,6 +77,17 @@ footer {
     margin-top: 50px;
 }
 
-ul {
-    list-style: none;
+.container h2 {
+    padding: 20px 0;
+    border-bottom: 1px solid black;
+}
+
+.container .row{
+    border-bottom: 1px solid rgb(165, 144, 144);
+}
+
+.container .col {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
 }

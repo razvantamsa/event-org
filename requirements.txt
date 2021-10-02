@@ -6,3 +6,4 @@ pip install phonenumbers
 python -m pip install Pillow
 pip install django-resized
 pip install bootstrap-py
+pip install  django-simple-captcha

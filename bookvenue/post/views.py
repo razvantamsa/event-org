@@ -41,7 +41,7 @@ def create_post(request):
             form.instance.host = request.user
             form.instance.date_posted = datetime.now()
             form.save()
-            return redirect('/post/')
+            return redirect('/')
     return render(request, template, context)
         
 
