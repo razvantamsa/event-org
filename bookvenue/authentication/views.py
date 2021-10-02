@@ -48,14 +48,17 @@ def login_view(request):
     if request.user.is_authenticated:
         return redirect('/')
     form = LoginForm(data = request.POST or None)
+    context = {'form': form, 'errors': errors}
+    context['name'] = 'anonymous'
+    context['authenticated'] = False
     if request.method == "POST":
         if form.is_valid():
             user = authenticate(username = form.cleaned_data['username'], password = form.cleaned_data['password'])
-            login(request, user)
-            if request.user.is_authenticated == True:
+            if user is not None:
+                login(request, user)
                 return redirect('/')
             errors.append("There is no such user/password")
-    return render(request, 'login.html', {'form': form, 'errors': errors})
+    return render(request, 'login.html', context)
 
 def logout_view(request):
     if(request.user.is_authenticated):

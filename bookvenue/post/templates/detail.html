@@ -66,23 +66,25 @@
     </div>
 
 <div class="wrapper">
-    <div class="form-group">
+    <div class="form-group border-bottom border-dark mb-5 pb-2 pt-2">
       <h3>{{ post.title }}</h3>
     </div>
-    <div class="form-group">
-      Description:
-      <div class="p-3 mb-2 bg-light text-dark rounded">{{ post.description }}</div>
+    <div class="form-group text-left">
+      <p class="mb-3 pl-2" >Description:</p>
+      <div class="p-3 mb-5 bg-light text-dark rounded">{{ post.description }}</div>
     </div>
-    <div class="form-group">
+    <div class="form-group text-left pl-2">
       Posted on: {{ post.date_posted }}
     </div>
-    <div class="form-group">
+    <div class="form-group text-left pl-2">
       Hosted by: <a href="/user/{{post.host.username}}/">{{ post.host }}</a>
     </div>
-    <div class="form-group">
+    <div class="form-group text-left pl-2">
       Views: {{ post.clicked }}
     </div>
-      {{ post.city }}, {{ post.country }}, {{ post.address }} 
+    <div class="form-group text-left pl-2">
+      @ {{ post.city }}, {{ post.country }}, {{ post.address }}
+    </div> 
 </div>
 
     <!-- Carousel -->

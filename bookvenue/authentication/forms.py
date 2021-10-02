@@ -7,8 +7,8 @@ from captcha.fields import CaptchaField
 
 class LoginForm(forms.Form):
 
-    username = forms.CharField(widget=forms.TextInput(attrs={'required':'required'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'required':'required'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'required':'required', 'class': 'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'required':'required', 'class': 'form-control'}))
 
     def clean_username(self):
         username = self.cleaned_data['username']

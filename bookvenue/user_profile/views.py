@@ -26,8 +26,18 @@ class UserDetail(generic.DetailView):
                 context = super(UserDetail, self).get_context_data(**kwargs)
                 context['post_list'] = Post.objects.filter(host__username__iexact=self.get_object().username)
                 context['profile_object'] = Profile.objects.filter(user__username=self.get_object().username).first()
-                print(context['profile_object'])
-                #print(self.get_object().username)
+                user = self.request.user
+                if(user.is_authenticated):
+                    if(self.get_object() == user):
+                        context['my_profile'] = True
+                    else:
+                        context['my_profile'] = False
+                    context['name'] = user.username
+                    context['authenticated'] = True
+                else:
+                    context['my_profile'] = False
+                    context['name'] = 'anonymous'
+                    context['authenticated'] = False
                 return context
 
 @login_required(login_url='/login/')
