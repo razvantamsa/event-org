@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'user_profile',
     'post',
     'phonenumber_field',
+    'django_google_maps',
+    'widget_tweaks',
+    'contact',
 ]
 
 MIDDLEWARE = [

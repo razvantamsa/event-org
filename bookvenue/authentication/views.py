@@ -8,12 +8,47 @@ import logging
 from django.core.mail import EmailMessage
 import uuid
 from user_profile.models import Profile
+import json
+from django.http import JsonResponse
 
 # Create your views here.
 
+# def search(request):
+#     if request.method == "POST":
+#         search_str = json.loads(request.body).get('searchText')
+#         result_post = Post.objects.filter(title__starts_with=search_str) | Post.objects.filter(
+#                     description__icontains=search_str) | Post.objects.filter(
+#                     city__icontains=search_str) | Post.objects.filter(
+#                     country__icontains=search_str) | Post.objects.filter(
+#                     address__icontains=search_str)
+#         data = result_post.value()
+#         return JsonResponse( list(data), safe=False )
+
+
 def display_welcome(request):
     post_list = Post.objects.all()
-    context = {'post_list': post_list}
+    user_list = User.objects.all()
+
+    if(request.method == "GET"):
+        str_search = request.GET.get('searchText')
+        print(str_search)
+        if (str_search):
+            post_list = Post.objects.filter(title__icontains=str_search) | Post.objects.filter(
+                                    host__username__icontains=str_search) | Post.objects.filter(
+                                    address__icontains=str_search) | Post.objects.filter(
+                                    city__icontains=str_search) | Post.objects.filter(
+                                    country__icontains=str_search)
+            user_list = User.objects.filter(username__icontains=str_search)
+
+        order_post = request.GET.get('post_dropdown')
+        order_user= request.GET.get('user_dropdown')
+        if(order_post != None):
+            post_list = post_list.order_by(order_post)
+
+        if(order_user != None):
+            user_list = user_list.order_by(order_user)
+
+    context = {'post_list': post_list, 'user_list': user_list}
     string_name = 'anonymous'
     if request.user.is_authenticated:
         context['authenticated'] = True

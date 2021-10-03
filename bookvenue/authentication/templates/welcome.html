@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +20,6 @@
 <body>
 
     <!-- Wrap-Around Begins -->
-    <div class="wrap-around">
 
     <!-- Log in Header -->
     <div class="header">
@@ -27,7 +27,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="/user/">
                   {% if authenticated is True%}
-                    <img src="{{ request.user.profile.profile_picture.url }}" alt="img" width="50" height="50">  Hello, {{ name }}</a>
+                    <a class="navbar-brand" href="/user/{{request.user.username}}/"><img src="{{ request.user.profile.profile_picture.url }}" alt="img" width="50" height="50">  Hello, {{request.user.username}}</a>
                   {% else %}
                     <img src="/images/profile.png" alt="img" width="50" height="50">  Hello, {{ name }}</a>
                   {% endif %}
@@ -44,7 +44,7 @@
                       <a class="nav-link" href="/create-post/"><i class="fas fa-pen-square"></i> Post</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Contact</a>
+                      <a class="nav-link" href="/contact/"><i class="fas fa-envelope"></i> Contact</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="/logout/"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -60,7 +60,7 @@
                       <a class="nav-link" href="/login/"><i class="fas fa-sign-in-alt"></i></i> Login</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Contact</a>
+                      <a class="nav-link" href="/contact/"><i class="fas fa-envelope"></i> Contact</a>
                     </li>
                     {% endif %}
                   </ul>
@@ -71,15 +71,74 @@
 
 
     <div class="container text-center bg-light">
-        <h2>Posts</h2>
-        {% for post in post_list %}
-          <div class="row pt-3 pb-3 ml-2 mr-2">
-            <div class="col md-3">
-              <a class="text-decoration-none" href="/post/{{ post.slug }}"> {{ post.title }} <a class="text-decoration-none text-reset" href="/post/{{ post.slug }}">by {{ post.host.username }} 
-              @ {{ post.city }}, {{ post.country }}, {{ post.address }}</a> </a> 
+
+      <!-- Search Bar -->
+      <form method="GET">
+        {% csrf_token %}
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <button class="input-group-text" id="basic-addon1" type="submit"><i class="fas fa-search"></i></button>
+              </div>
+              <input name="searchText" type="text" class="form-control" placeholder="Look it up!" aria-label="Search" aria-describedby="basic-addon1">
             </div>
           </div>
-        {% endfor %}
+          <div class="row">
+              <div class="col md-2">
+                <div class="form-group pt-3">
+                  <select class="form-select form-control" aria-label="Default select example" title="post_dropdown">
+                    <option selected value="None">Order by</option>
+                    <option value="title">Title Ascending</option>
+                    <option value="-title">Title Descending</option>
+                    <option value="host__username">Host Ascending</option>
+                    <option value="-host__username">Host Descending</option>
+                    <option value="clicked">Popularity Ascending</option>
+                    <option value="-clicked">Popularity Descending</option>
+                    <option value="date_posted">Date Ascending</option>
+                    <option value="-date_posted">Date Descending</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col md-2">
+                <div class="form-group pt-3">
+                  <select class="form-select form-control" aria-label="Default select example" title="user_dropdown">
+                    <option selected value="None">Order by</option>
+                    <option value="username">User Ascending</option>
+                    <option value="-username">User Descending</option>
+                  </select>
+                </div>
+              </div>
+          </div>
+      </form>
+
+      <!--End Search Bar -->
+
+        <div class="container">
+            <div class="row">
+              <div class="col md-2">
+                <h2>Posts</h2>
+                {% for post in post_list %}
+                  <div class="row pt-3 pb-3 ml-2 mr-2">
+                    <div class="col md-3">
+                      <a class="text-decoration-none" href="/post/{{ post.slug }}"> {{ post.title }} <a class="text-decoration-none text-reset" href="/post/{{ post.slug }}">by {{ post.host.username }} 
+                      @ {{ post.city }}, {{ post.country }}, {{ post.address }}</a> </a> 
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="col md-2">
+                <h2>Users</h2>
+                {% for user_entry in user_list %}
+                  <div class="row pt-3 pb-3 ml-2 mr-2">
+                    <div class="col md-3">
+                      <a class="text-decoration-none" href="/user/{{ user_entry.username }}"> {{ user_entry.username }} 
+                      @ {{ user_entry.profile.city }}, {{ user_entry.profile.country }}, {{ user_entry.profile.phonenumber }}</a> 
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+        </div>
     </div>
 
     <div class="push"></div>

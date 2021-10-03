@@ -1,0 +1,207 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookVenue</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post/update.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/562748e979.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+    <!-- Log in Header -->
+    <div class="header">
+        <div class="menu-bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="/user/">
+                  {% if authenticated is True%}
+                  <a class="navbar-brand" href="/user/{{request.user.username}}/"><img src="{{ request.user.profile.profile_picture.url }}" alt="img" width="50" height="50">  Hello, {{request.user.username}}</a>
+                  {% else %}
+                    <img src="/images/profile.png" alt="img" width="50" height="50">  Hello, {{ name }}</a>
+                  {% endif %}
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ml-auto">
+                    {% if authenticated is True%}
+                    <li class="nav-item">
+                      <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/create-post/"><i class="fas fa-pen-square"></i> Post</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/contact/"><i class="fas fa-envelope"></i> Contact</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/logout/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/register/"><i class="fas fa-user-plus"></i> Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/login/"><i class="fas fa-sign-in-alt"></i></i> Login</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/contact/"><i class="fas fa-envelope"></i> Contact</a>
+                    </li>
+                    {% endif %}
+                  </ul>
+                </div>
+              </nav>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                {% csrf_token %}
+
+                {{ form.title.errors }}
+                {{ form.title.label_tag }}{% render_field form.title class="form-control" %}
+                <br><br>
+
+                {{ form.description.errors }}
+                {{ form.description.label_tag }} {% render_field form.description class="form-control" %}
+                <br><br>
+
+                {{ form.address.errors }}
+                {{ form.address.label_tag }} {% render_field form.address class="form-control" %}
+                <br><br>
+
+                {{ form.city.errors }}
+                {{ form.city.label_tag }} {% render_field form.city class="form-control" %}
+                <br><br>
+
+                {{ form.country.errors }}
+                {{ form.country.label_tag }} {% render_field form.country class="form-control" %}
+                <br><br>
+                
+                <div class="bg-light pt-3 pb-3 rounded">
+                  <div class="pb-3 mb-4">
+                    {{ form.picture1.errors }}
+                    {{ form.picture1.label_tag }} {{ form.picture1 }}
+                  </div>
+
+                  <div class="pb-3 mb-4">
+                    {{ form.picture2.errors }}
+                    {{ form.picture2.label_tag }} {{ form.picture2 }}
+                  </div>
+
+                  <div class="pb-3 mb-4">
+                    {{ form.picture3.errors }}
+                    {{ form.picture3.label_tag }} {{ form.picture3 }}
+                  </div>
+
+                  <div class="pb-3 mb-4">
+                    {{ form.picture4.errors }}
+                    {{ form.picture4.label_tag }} {{ form.picture4 }}
+                  </div>
+                </div>
+
+            </div>
+            <br><br>
+            <label for="save">Done!</label>
+            <input type="submit" name="save">
+            <br><br>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-light text-muted">
+        <!-- Section: Social media -->
+        <section
+          class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+        >
+          <!-- Left -->
+          <div class="me-5 d-none d-lg-block">
+            <span>Get connected with us on social networks:</span>
+          </div>
+          <!-- Left -->
+      
+          <!-- Right -->
+          <div class>
+            <a href="https://www.facebook.com/razvan.tamsa" class="me-4 text-reset">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/razvantamsa/?hl=en" class="me-4 text-reset">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/razvan-tamsa-42b7a01b2?originalSubdomain=ro" class="me-4 text-reset">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/razvantamsa/" class="me-4 text-reset">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+      
+        <!-- Section: Links  -->
+        <section class="">
+          <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <!-- Content -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                    WHERE TO FIND US
+                </h6>
+              </div>
+              <!-- Grid column -->
+      
+              <!-- Grid column -->
+              <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                    <i class="fas fa-home me-3"></i> Timisoara, RO
+                </h6>
+              </div>
+              <!-- Grid column -->
+      
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                    <i class="fas fa-phone me-3"></i> +40 733 896 986
+                </h6>
+              </div>
+              <!-- Grid column -->
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                    <i class="far fa-envelope"></i> bookvenuecontact
+                </h6>
+              </div>
+              <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+          </div>
+        </section>
+        <!-- Section: Links  -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+          © 2021 BookVenue
+        </div>
+        <!-- Copyright -->
+      </footer>
+      <!-- Footer -->
+    </body>
+    </html>

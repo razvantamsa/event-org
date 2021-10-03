@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 from django.utils.text import slugify
+from django_google_maps import fields as map_fields
 
 # Create your models here.
 
@@ -9,7 +10,7 @@ class Post(models.Model):
     title = models.CharField(max_length = 20)
     slug = models.SlugField(unique = True)
     description = models.TextField()
-    host = models.ForeignKey(User, on_delete = models.CASCADE)
+    host = models.ForeignKey(User, on_delete = models.CASCADE, related_name='host_profile')
     clicked = models.IntegerField( default = 0)
     date_posted = models.DateTimeField()
     address = models.CharField( max_length = 50 )

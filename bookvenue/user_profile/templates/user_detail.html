@@ -27,7 +27,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="/user/">
                   {% if authenticated is True%}
-                    <img src="{{ request.user.profile.profile_picture.url }}" alt="img" width="50" height="50">  Hello, {{ name }}</a>
+                  <a class="navbar-brand" href="/user/{{request.user.username}}/"><img src="{{ request.user.profile.profile_picture.url }}" alt="img" width="50" height="50">  Hello, {{request.user.username}}</a>
                   {% else %}
                     <img src="/images/profile.png" alt="img" width="50" height="50">  Hello, {{ name }}</a>
                   {% endif %}
@@ -44,7 +44,7 @@
                       <a class="nav-link" href="/create-post/"><i class="fas fa-pen-square"></i> Post</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Contact</a>
+                      <a class="nav-link" href="/contact/"><i class="fas fa-envelope"></i> Contact</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="/logout/"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -60,7 +60,7 @@
                       <a class="nav-link" href="/login/"><i class="fas fa-sign-in-alt"></i></i> Login</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Contact</a>
+                      <a class="nav-link" href="/contact/"><i class="fas fa-envelope"></i> Contact</a>
                     </li>
                     {% endif %}
                   </ul>
@@ -69,49 +69,12 @@
         </div>
     </div>
 
-    <div class="wrapper">
-        <div class="row">
-            <div class="col md-2">
-                <figure class = "figure ">
-                    <img class="figure-img rounded" src="{{ profile_object.profile_picture.url }}" alt="img" width="300" height="300">
-                    <figcaption class="figure-caption border-bottom border-dark text-center pb-3 pt-3">This is the page of {{ profile_object.user.username }}</figcaption>
-                </figure>
-            </div>
-            <div class="col md-2 mt-3 align-baseline">
-                <p class="h4 mb-4">About {{ profile_object.user.username }}:</p>
-                {% if profile_object.bio is not None %}
-                    {{ profile_object.bio }}<br/><br/><br/>
-                {% else %}
-                    There is nothing to display yet<br/><br/><br/>
-                {% endif %}
-                <div class="row">
-                    <div class="col md-3">
-                        <i class="fas fa-city"></i> {{profile_object.city}}
-                    </div>
-                    <div class="col md-3">
-                        <i class="fas fa-flag"></i> {{profile_object.country}}
-                    </div>
-                    <div class="col md-3">
-                        <i class="fas fa-phone"></i> {{profile_object.phonenumber}}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="second-wrapper overflow-auto">
-                <ul>
-                    {% for post in post_list %}
-                    <li>
-                        <a href="../../post/{{post.slug}}">{{post.title}}</a><br>
-                        {{post.description}}
-                    </li>
-                    <br>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
+    {% if my_profile  %}
+        {% include 'same_user.html' %}
+    {% else %}
+        {% include 'not_same_user.html' %}
+    {% endif %}
 
-    </div>
                     <!-- Footer -->
     <footer class="text-center text-lg-start bg-light text-muted">
         <!-- Section: Social media -->

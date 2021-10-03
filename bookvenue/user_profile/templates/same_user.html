@@ -1,0 +1,59 @@
+{% block content %}
+
+<div class="wrapper">
+    <div class="row">
+        <div class="col md-2">
+            <figure class = "figure ">
+                <img class="figure-img rounded" src="{{ profile_object.profile_picture.url }}" alt="img" width="300" height="300">
+                <figcaption class="figure-caption border-bottom border-dark text-center pb-3 pt-3">This is the page of {{ profile_object.user.username }}</figcaption>
+            </figure>
+        </div>
+        <div class="col md-2 mt-3 align-baseline">
+            <p class="h4 mb-4">About {{ profile_object.user.username }}:</p>
+            {% if profile_object.bio is not None %}
+                {{ profile_object.bio }}<br/><br/><br/>
+            {% else %}
+                There is nothing to display yet<br/><br/><br/>
+            {% endif %}
+            <div class="row">
+                <div class="col md-3">
+                    <i class="fas fa-city"></i> {{profile_object.city}}
+                </div>
+                <div class="col md-3">
+                    <i class="fas fa-flag"></i> {{profile_object.country}}
+                </div>
+                <div class="col md-3">
+                    <i class="fas fa-phone"></i> {{profile_object.phonenumber}}
+                </div>
+                <div class="col md-3">
+                    <i class="fas fa-birthday-cake"></i> {{profile_object.birth_date}}
+                </div>
+                <div class="col md-3">
+                    <i class="fas fa-edit"></i> <a href="/user/" class="text-decoration-none">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <ul class="list-unstyled">
+                {% for post in post_list %}
+                <li>
+                    <div class="row">
+                        <div class="col md-3 text-left">
+                            <a href="/post/{{post.slug}}">{{post.title}}</a><br>
+                        </div>
+                        <div class="col md-3 text-right">
+                            <a href="/post/{{post.slug}}/edit/" class="text-decoration-none"><i class="fas fa-edit"></i> Edit Post</a>
+                            <a href="/post/{{post.slug}}/delete/" class="text-decoration-none"><i class="fas fa-trash-alt"></i> Delete Post</a>
+                        </div>
+                    </div>
+                    <div class="row align-left">
+                        {{post.description}}
+                    </div>
+                </li>
+                <br>
+                {% endfor %}
+            </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +23,7 @@
     <div class="header">
         <div class="menu-bar">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/user/"><img src="{{ request.user.profile.profile_picture.url }}" alt="img" width="50" height="50">  Hello, {{request.user.username}}</a>
+                <a class="navbar-brand" href="/user/{{request.user.username}}/"><img src="{{ request.user.profile.profile_picture.url }}" alt="img" width="50" height="50">  Hello, {{request.user.username}}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
@@ -35,7 +36,7 @@
                       <a class="nav-link" href="/create-post/"><i class="fas fa-pen-square"></i> Post</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Contact</a>
+                      <a class="nav-link" href="/contact/"><i class="fas fa-envelope"></i> Contact</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="/logout/"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -78,26 +79,27 @@
                 {{ form.country.label_tag }} {{ form.country }}
                 <br><br>
 
-            <div class="fieldWrapper">
-                {{ form.picture1.errors }}
-                {{ form.picture1.label_tag }} {{ form.picture1 }}
-                <br><br>
-            </div>
-            <div class="fieldWrapper">
-                {{ form.picture2.errors }}
-                {{ form.picture2.label_tag }} {{ form.picture2 }}
-                <br><br>
-            </div>
-            <div class="fieldWrapper">
-                {{ form.picture3.errors }}
-                {{ form.picture3.label_tag }} {{ form.picture3 }}
-                <br><br>
-            </div>
-            <div class="fieldWrapper">
-                {{ form.picture4.errors }}
-                {{ form.picture4.label_tag }} {{ form.picture4 }}
-                <br><br>
-            </div>
+                <div class="bg-light pt-3 pb-3 rounded">
+                  <div class="pb-3 mb-4">
+                    {{ form.picture1.errors }}
+                    {{ form.picture1.label_tag }} {{ form.picture1 }}
+                  </div>
+
+                  <div class="pb-3 mb-4">
+                    {{ form.picture2.errors }}
+                    {{ form.picture2.label_tag }} {{ form.picture2 }}
+                  </div>
+
+                  <div class="pb-3 mb-4">
+                    {{ form.picture3.errors }}
+                    {{ form.picture3.label_tag }} {{ form.picture3 }}
+                  </div>
+
+                  <div class="pb-3 mb-4">
+                    {{ form.picture4.errors }}
+                    {{ form.picture4.label_tag }} {{ form.picture4 }}
+                  </div>
+                </div>
 
                 
                 <br><br>
